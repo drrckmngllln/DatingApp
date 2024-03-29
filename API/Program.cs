@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,7 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 
-
-app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors(builder =>
 {
